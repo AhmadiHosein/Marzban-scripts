@@ -131,6 +131,8 @@ install_marzban() {
 
     mkdir -p "$DATA_DIR"
     mkdir -p "$APP_DIR"
+    ufw disable
+
 
     colorized_echo blue "Fetching compose file"
     curl -sL "$FILES_URL_PREFIX/docker-compose.yml" -o "$APP_DIR/docker-compose.yml"
@@ -527,6 +529,7 @@ update_command() {
 
 usage() {
     colorized_echo red "Usage: marzban [command]"
+    
     echo
     echo "Commands:"
     echo "  up              Start services"
@@ -565,4 +568,5 @@ case "$1" in
     shift; install_marzban_script "$@";;
     *)
     usage;;
+    
 esac
